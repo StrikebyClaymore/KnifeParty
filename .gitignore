@@ -1,0 +1,14 @@
+Library/
+Packages/
+ProjectSettings/ProjectVersion.txt
+Logs/
+obj/
+.vscode/
+.vs/Mooshrooms/v16/
+.idea/
+temp/
+Assets/Plugins/Editor/JetBrains.meta
+Assets/Plugins/Editor/JetBrains/
+*.csproj
+*.sln
+*.apk
