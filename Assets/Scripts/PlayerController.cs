@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject knifePrefab;
-    [SerializeField] private Transform knifeSpawnPoint;
-
-    private GameObject _currentKnife;
-    private int knifesCount;
-    
-    private void Start()
-    {
-        _currentKnife = Instantiate(knifePrefab,knifeSpawnPoint.position, knifeSpawnPoint.rotation, transform);
-    }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -33,12 +22,6 @@ public class PlayerController : MonoBehaviour
     
     private void TouchDown()
     {
-        SpawnKnife();
-    }
-
-    private void SpawnKnife()
-    {
-        if (_currentKnife.GetComponent<Knife>().Throw())
-            _currentKnife = Instantiate(knifePrefab,knifeSpawnPoint.position, knifeSpawnPoint.rotation, transform);
+        GameManager.LevelManager.SpawnKnife();
     }
 }
