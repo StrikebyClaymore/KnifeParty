@@ -72,6 +72,8 @@ public class Knife : MonoBehaviour
     
     private void CollideWithKnife(Collider2D collider)
     {
+        GameManager.Player.enabled = false;
+        
         rb.velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer("FallKnife");
                 
@@ -84,6 +86,8 @@ public class Knife : MonoBehaviour
         var direction = (new Vector3(collPos.x, collPos.y, 0) - transform.position).normalized;
         rb.AddForce(-direction * fallForce, ForceMode2D.Impulse);
         rb.AddTorque(torqueForce, ForceMode2D.Force);
+
+        GameManager.LevelManager.Lose();
     }
 
     private void AttachToLog(Collider2D collider) // Добавить отдельную провеку для фикса бага с втыканием ножа в нож
@@ -94,6 +98,7 @@ public class Knife : MonoBehaviour
         transform.SetParent(collider.transform);
         rb.bodyType = RigidbodyType2D.Kinematic;
         collider.gameObject.GetComponent<Log>().GetHit();
+        GameManager.GameData.CurrentScore++;
     }
 
     /// <summary>
@@ -120,18 +125,6 @@ public class Knife : MonoBehaviour
         {
             if (!_isAttachedToLog)
                 collider.GetComponent<Apple>().GetHit();
-        }
-    }
-
-    /// <summary>
-    /// Проверка вылета ножа за границу карты
-    /// </summary>
-    /// <param name="other"></param>
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Border") && knifeCollider.enabled)
-        {
-            Destroy(gameObject);
         }
     }
 }

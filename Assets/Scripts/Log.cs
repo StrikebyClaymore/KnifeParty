@@ -6,18 +6,25 @@ using UnityEngine;
 public class Log : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed = 1.5f;
-    [SerializeField] private int hp = 5; 
+    [SerializeField] private int hp = 7; 
     
     private void FixedUpdate()
     {
         transform.Rotate(0, 0, rotateSpeed);
     }
 
+    public void SetHp(int hp)
+    {
+        this.hp = hp;
+    }
+    
     public void GetHit()
     {
         hp = Mathf.Max(0, hp - 1);
         if (hp == 0)
+        {
             Destroy(gameObject);
-        GameManager.LevelManager.LevelCompleted();
+            GameManager.LevelManager.LevelCompleted();
+        }
     }
 }

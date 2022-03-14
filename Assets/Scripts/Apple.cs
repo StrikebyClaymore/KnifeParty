@@ -7,6 +7,7 @@ public class Apple : MonoBehaviour
     [SerializeField] private GameObject part1;
     [SerializeField] private GameObject part2;
     [SerializeField] private float force = 4f;
+    
     public void GetHit()
     {
         part1.transform.SetParent(transform.parent.parent);
@@ -25,5 +26,6 @@ public class Apple : MonoBehaviour
         part2.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Force);
 
         GameManager.GameData.Apples++;
+        Destroy(gameObject);
     }
 }

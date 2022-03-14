@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameData
 {
+    public int MAXStage;
+    public int CurrentStage;
     public int MAXScore;
+    public int CurrentScore;
     public int Apples;
 
     public GameData()
