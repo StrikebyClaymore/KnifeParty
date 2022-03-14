@@ -12,3 +12,4 @@ Assets/Plugins/Editor/JetBrains/
 *.csproj
 *.sln
 *.apk
+*.keystore
