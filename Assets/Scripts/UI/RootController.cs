@@ -11,11 +11,11 @@ public class RootController : MonoBehaviour
 
     [Header("Controllers")]
     [SerializeField]
-    private MainMenuController menuController;
+    public MainMenuController menuController;
     [SerializeField]
     public GameController gameController;
     [SerializeField]
-    private GameOverController gameOverController;
+    public GameOverController gameOverController;
 
     private void Start()
     {

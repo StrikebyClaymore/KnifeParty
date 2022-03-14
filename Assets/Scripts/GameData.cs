@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameData
 {
-    private int _maxStage;
+    public int MAXStage;
     private int _currentStage;
     public int CurrentStage
     {
@@ -12,7 +12,7 @@ public class GameData
         set => _currentStage = value;
     }
     
-    private int _maxScore;
+    public int MAXScore;
     private int _currentScore;
     public int CurrentScore
     {
@@ -42,15 +42,20 @@ public class GameData
 
     public void Save()
     {
-        PlayerPrefs.SetInt("MAXStage", _maxStage);
-        PlayerPrefs.SetInt("MAXScore", _maxScore);
+        if (_currentScore > MAXScore)
+            MAXScore = _currentScore;
+        if (_currentStage > MAXStage)
+            MAXStage = _currentStage;
+                
+        PlayerPrefs.SetInt("MAXStage", MAXStage);
+        PlayerPrefs.SetInt("MAXScore", MAXScore);
         PlayerPrefs.SetInt("Apples", Apples);
     }
 
     private void Load()
     {
-        _maxStage = PlayerPrefs.GetInt("MAXStage");
-        _maxScore = PlayerPrefs.GetInt("MAXScore");
+        MAXStage = PlayerPrefs.GetInt("MAXStage");
+        MAXScore = PlayerPrefs.GetInt("MAXScore");
         Apples = PlayerPrefs.GetInt("Apples");
     }
 }
