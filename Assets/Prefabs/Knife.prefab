@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 0496885e7e5341e449e7527e88086f47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,13 +99,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3493011123322097052}
   knifeCollider: {fileID: 4959196514620120890}
-  throwForce: 20
+  throwForce: 30
   fallForce: 15
   torqueForce: 720
-  knifeInLogDisplacement: 0.6
+  knifeInLogDisplacement: 0.3
   tweenOffsetY: 2.5
-  tweenScale: 0.2
-  tweenStopDistance: 0.2
+  tweenScale: 0.4
+  tweenStopDistance: 0.01
 --- !u!50 &3493011123322097052
 Rigidbody2D:
   serializedVersion: 4

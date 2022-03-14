@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
@@ -19,17 +15,38 @@ public class Knife : MonoBehaviour
     private Vector3 _tweenStart;
     private Vector3 _tweenEnd;
     [SerializeField] private float tweenOffsetY = 2.5f;
-    [SerializeField] private float tweenScale = 0.2f;
+    [SerializeField] private float tweenScale = 0.3f;
     [SerializeField] private float tweenStopDistance = 0.2f;
+    private float _tweenPositionY;
     private bool _isOnTween;
 
-    private void Start()
+    public void Init()
     {
         _tweenStart = transform.position;
         _tweenEnd = new Vector3(0, _tweenStart.y + tweenOffsetY, 0);
         rb.bodyType = RigidbodyType2D.Kinematic;
         knifeCollider.enabled = false;
         _isOnTween = true;
+    }
+
+    public void SpawnInLog()
+    {
+        _isAttachedToLog = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+    }
+    
+    private void Update()
+    {
+        if (_isOnTween)
+        {
+            _tweenPositionY = (_tweenEnd.y - transform.position.y) * tweenScale;
+            var displacement = Vector3.up * (_tweenPositionY * Time.deltaTime);
+            if (Vector3.Distance(transform.position + displacement, _tweenEnd) <= tweenStopDistance)
+            {
+                _isOnTween = false;
+                transform.position = _tweenEnd;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -40,12 +57,7 @@ public class Knife : MonoBehaviour
 
     private void TweenMove()
     {
-        var offsetY = (_tweenEnd.y - transform.position.y) * tweenScale;
-        transform.Translate(Vector3.up * offsetY, Space.World);
-        if (Vector3.Distance(transform.position, _tweenEnd) <= tweenStopDistance)
-        {
-            _isOnTween = false;
-        }
+        transform.Translate(Vector3.up * _tweenPositionY, Space.World);
     }
 
     public bool Throw()
@@ -74,15 +86,16 @@ public class Knife : MonoBehaviour
         rb.AddTorque(torqueForce, ForceMode2D.Force);
     }
 
-    private void AttackToLog(Collider2D collider)
+    private void AttachToLog(Collider2D collider) // Добавить отдельную провеку для фикса бага с втыканием ножа в нож
     {
         rb.velocity = Vector2.zero;
         _isAttachedToLog = true; 
         transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
         transform.SetParent(collider.transform);
         rb.bodyType = RigidbodyType2D.Kinematic;
+        collider.gameObject.GetComponent<Log>().GetHit();
     }
-    
+
     /// <summary>
     /// Проверка столкновения с ножом, который вокнут в бревно
     /// /// Проверка столкновения с бревном
@@ -99,7 +112,14 @@ public class Knife : MonoBehaviour
         }
         else if (collider.CompareTag("Log"))
         {
-            AttackToLog(collider);
+            if (!_isAttachedToLog)
+                AttachToLog(collider);
+        }
+
+        if (collider.CompareTag("Apple"))
+        {
+            if (!_isAttachedToLog)
+                collider.GetComponent<Apple>().GetHit();
         }
     }
 
