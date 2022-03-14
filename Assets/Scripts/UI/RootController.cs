@@ -13,15 +13,15 @@ public class RootController : MonoBehaviour
     [SerializeField]
     private MainMenuController menuController;
     [SerializeField]
-    private GameController gameController;
+    public GameController gameController;
     [SerializeField]
     private GameOverController gameOverController;
 
     private void Start()
     {
         menuController.root = this;
-        //gameController.root = this;
-        //gameOverController.root = this;
+        gameController.root = this;
+        gameOverController.root = this;
         ChangeController(ControllerTypeEnum.MainMenu);
     }
     
@@ -34,12 +34,12 @@ public class RootController : MonoBehaviour
             case ControllerTypeEnum.MainMenu:
                 menuController.Activate();
                 break;
-            /*case ControllerTypeEnum.Game:
+            case ControllerTypeEnum.Game:
                 gameController.Activate();
                 break;
             case ControllerTypeEnum.GameOver:
                 gameOverController.Activate();
-                break;*/
+                break;
             default:
                 break;
         }
@@ -48,7 +48,7 @@ public class RootController : MonoBehaviour
     public void DeactivateControllers()
     {
         menuController.Deactivate();
-        //gameController.Deactivate();
-        //gameOverController.Deactivate();
+        gameController.Deactivate();
+        gameOverController.Deactivate();
     }
 }

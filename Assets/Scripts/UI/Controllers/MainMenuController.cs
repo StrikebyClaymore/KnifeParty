@@ -18,7 +18,6 @@ public class MainMenuController : SubController<MainMenuView>
     
     private void StartGame()
     {
-        Debug.Log("START");
         root.ChangeController(RootController.ControllerTypeEnum.Game);
     }
 }
