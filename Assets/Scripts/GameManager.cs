@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GameData = new GameData();
         RootController = GetComponentInChildren<RootController>();
+        GameData = new GameData();
         Player = GetComponentInChildren<PlayerController>();
         LevelManager = GetComponentInChildren<LevelManager>();
     }

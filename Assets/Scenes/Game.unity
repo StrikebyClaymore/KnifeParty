@@ -339,7 +339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 'Knives: 0'
 --- !u!222 &144975426
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1377,8 +1377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146.04, y: 312.5}
-  m_SizeDelta: {x: 70, y: 30}
+  m_AnchoredPosition: {x: 116.82, y: 312.5}
+  m_SizeDelta: {x: 128.42917, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363813651
 MonoBehaviour:
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 'Apples: 0'
 --- !u!222 &1363813652
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1594,9 +1594,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   root: {fileID: 0}
   ui: {fileID: 231420493}
-  knives: {fileID: 1433638119}
+  knives: {fileID: 1433638120}
   knifeIconPrefab: {fileID: 1874670173944464644, guid: 146c4ff858ce66e4989acc6cfba0add7,
     type: 3}
+  score: {fileID: 144975425}
+  apples: {fileID: 1363813651}
 --- !u!1 &1795367912
 GameObject:
   m_ObjectHideFlags: 0

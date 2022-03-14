@@ -4,12 +4,37 @@ using UnityEngine;
 
 public class GameData
 {
-    public int MAXStage;
-    public int CurrentStage;
-    public int MAXScore;
-    public int CurrentScore;
-    public int Apples;
-
+    private int _maxStage;
+    private int _currentStage;
+    public int CurrentStage
+    {
+        get => _currentStage;
+        set => _currentStage = value;
+    }
+    
+    private int _maxScore;
+    private int _currentScore;
+    public int CurrentScore
+    {
+        get => _currentScore;
+        set
+        {
+            _currentScore = value;
+            GameManager.RootController.gameController.SetKnives(_currentScore);
+        } 
+    }
+    
+    private int _apples;
+    public int Apples
+    {
+        get => _apples;
+        set
+        {
+            _apples = value;
+            GameManager.RootController.gameController.SetApples(_apples);
+        } 
+    }
+    
     public GameData()
     {
         Load();
@@ -17,13 +42,15 @@ public class GameData
 
     public void Save()
     {
-        PlayerPrefs.SetInt("MAXScore", MAXScore);
+        PlayerPrefs.SetInt("MAXStage", _maxStage);
+        PlayerPrefs.SetInt("MAXScore", _maxScore);
         PlayerPrefs.SetInt("Apples", Apples);
     }
 
     private void Load()
     {
-        MAXScore = PlayerPrefs.GetInt("MAXScore");
+        _maxStage = PlayerPrefs.GetInt("MAXStage");
+        _maxScore = PlayerPrefs.GetInt("MAXScore");
         Apples = PlayerPrefs.GetInt("Apples");
     }
 }
