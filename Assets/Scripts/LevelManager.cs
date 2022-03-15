@@ -47,10 +47,10 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCompleted()
     {
-        GameManager.GameData.CurrentStage++;
+        /*GameManager.GameData.CurrentStage++;
         GameManager.GameData.Save();
         GenerateLevel();
-        Debug.Log("Level completed");
+        Debug.Log("Level completed");*/
     }
 
     public void Restart()
