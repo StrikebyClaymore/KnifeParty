@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Knife : MonoBehaviour
     {
         _isAttachedToLog = true;
         rb.bodyType = RigidbodyType2D.Kinematic;
+        //gameObject.layer = LayerMask.NameToLayer("Knife");
     }
     
     private void Update()
@@ -72,8 +74,6 @@ public class Knife : MonoBehaviour
     
     private void CollideWithKnife(Collider2D collider)
     {
-        GameManager.Player.enabled = false;
-        
         rb.velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer("FallKnife");
                 
@@ -87,17 +87,26 @@ public class Knife : MonoBehaviour
         rb.AddForce(-direction * fallForce, ForceMode2D.Impulse);
         rb.AddTorque(torqueForce, ForceMode2D.Force);
 
-        GameManager.LevelManager.Lose();
+        // Сначала обрабатывается столкновение с ножом даже если его коллизия находится дальше дерева
+        // Поэтому откладываем вызов метода пока не обработается столкновение с деревом
+        Invoke(nameof(CheckLose), 0.1f);
     }
 
-    private void AttachToLog(Collider2D collider) // Добавить отдельную провеку для фикса бага с втыканием ножа в нож
+    private void CheckLose()
     {
+        if(!_isAttachedToLog)
+            GameManager.LevelManager.Lose();
+    }
+    
+    private void AttachToLog(Collider2D collider)
+    {
+        _isAttachedToLog = true;
         rb.velocity = Vector2.zero;
-        _isAttachedToLog = true; 
-        transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
-        transform.SetParent(collider.transform);
         rb.bodyType = RigidbodyType2D.Kinematic;
+        transform.SetParent(collider.transform);
+        transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
         collider.gameObject.GetComponent<Log>().GetHit();
+        gameObject.layer = LayerMask.NameToLayer("Knife");
         GameManager.GameData.CurrentScore++;
     }
 
@@ -108,17 +117,17 @@ public class Knife : MonoBehaviour
     /// <param name="collider"></param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Knife"))
+        if (collider.CompareTag("Log"))
+        {
+            if (!_isAttachedToLog)
+                AttachToLog(collider);
+        }
+        else if (collider.CompareTag("Knife"))
         {
             if (collider.GetComponent<Knife>()._isAttachedToLog && !_isAttachedToLog)
             {
                 CollideWithKnife(collider);
             }
-        }
-        else if (collider.CompareTag("Log"))
-        {
-            if (!_isAttachedToLog)
-                AttachToLog(collider);
         }
 
         if (collider.CompareTag("Apple"))
@@ -126,5 +135,10 @@ public class Knife : MonoBehaviour
             if (!_isAttachedToLog)
                 collider.GetComponent<Apple>().GetHit();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
     }
 }

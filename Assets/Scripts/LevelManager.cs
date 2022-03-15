@@ -55,21 +55,25 @@ public class LevelManager : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.GameData.CurrentStage = 1;
+        GameManager.GameData.CurrentScore = 0;
         GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.Game);
         Debug.Log("Restart level");
     }
 
     public void Lose()
     {
-        GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
+        Debug.Log("LOSE");
+        //GameManager.Player.enabled = false;
+        //GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
     }
     
     public void SpawnKnife()
     {
         if (_knivesCount != 0 && _currentKnife.GetComponent<Knife>().Throw())
         {
-            _knivesCount = Mathf.Max(0, _knivesCount - 1);
-            GameManager.RootController.gameController.MinusKnife(_knivesCount);
+            //_knivesCount = Mathf.Max(0, _knivesCount - 1);
+            //GameManager.RootController.gameController.MinusKnife(_knivesCount);
             _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
             _currentKnife.GetComponent<Knife>().Init();
         }

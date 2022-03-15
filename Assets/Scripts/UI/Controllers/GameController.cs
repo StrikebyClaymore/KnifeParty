@@ -9,9 +9,6 @@ public class GameController : SubController<GameView>
     [SerializeField] private Transform knives;
     [SerializeField] private GameObject knifeIconPrefab;
 
-    [SerializeField] private Text score;
-    [SerializeField] private Text apples;
-    
     public override void Activate()
     {
         base.Activate();
@@ -37,13 +34,4 @@ public class GameController : SubController<GameView>
         }
     }
 
-    public void SetKnives(int count)
-    {
-        score.text = $"Knives: {count}";
-    }
-    
-    public void SetApples(int count)
-    {
-        apples.text = $"Apples: {count}";
-    }
-    }
+}

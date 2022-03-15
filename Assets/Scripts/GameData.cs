@@ -5,11 +5,16 @@ using UnityEngine;
 public class GameData
 {
     public int MAXStage;
-    private int _currentStage;
+    private int _currentStage = 1;
     public int CurrentStage
     {
         get => _currentStage;
-        set => _currentStage = value;
+        set
+        {
+            _currentStage = value;
+            GameManager.RootController.gameController.SetStage(_currentStage);
+            Save();
+        }
     }
     
     public int MAXScore;
@@ -20,7 +25,8 @@ public class GameData
         set
         {
             _currentScore = value;
-            GameManager.RootController.gameController.SetKnives(_currentScore);
+            GameManager.RootController.gameController.SetScore(_currentScore);
+            Save();
         } 
     }
     
@@ -32,12 +38,14 @@ public class GameData
         {
             _apples = value;
             GameManager.RootController.gameController.SetApples(_apples);
+            Save();
         } 
     }
     
     public GameData()
     {
         Load();
+        GameManager.RootController.gameController.SetStage(_currentStage);
     }
 
     public void Save()
