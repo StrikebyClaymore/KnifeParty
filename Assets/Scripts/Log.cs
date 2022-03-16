@@ -9,13 +9,7 @@ public class Log : MonoBehaviour
     [SerializeField] private GameObject[] parts;
     
     [SerializeField] private float rotateSpeed = 1.5f;
-    [SerializeField] private int maxHp = 7;
     private int hp;
-
-    private void Start()
-    {
-        hp = maxHp;
-    }
 
     private void FixedUpdate()
     {

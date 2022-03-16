@@ -267,7 +267,6 @@ MonoBehaviour:
   - {fileID: 6933931567315914994}
   - {fileID: 725269448425184897}
   rotateSpeed: 0
-  maxHp: 7
 --- !u!1 &3205357734138143842
 GameObject:
   m_ObjectHideFlags: 0
