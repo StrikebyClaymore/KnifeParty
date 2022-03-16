@@ -102,7 +102,7 @@ MonoBehaviour:
   throwForce: 30
   fallForce: 15
   torqueForce: 720
-  knifeInLogDisplacement: 0.3
+  knifeInLogDisplacement: 0.5
   tweenOffsetY: 2.5
   tweenScale: 0.5
   tweenStopDistance: 0.01

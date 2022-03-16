@@ -75,7 +75,7 @@ public class Knife : MonoBehaviour
     private void CollideWithKnife(Collider2D collider)
     {
         rb.velocity = Vector2.zero;
-        gameObject.layer = LayerMask.NameToLayer("FallKnife");
+        gameObject.layer = LayerMask.NameToLayer("FallObject");
                 
         var collPos = collider.transform.position;
         if (collPos.x - transform.position.x < - 0.1f )
@@ -105,9 +105,9 @@ public class Knife : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         transform.SetParent(collider.transform);
         transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
-        collider.gameObject.GetComponent<Log>().GetHit();
-        gameObject.layer = LayerMask.NameToLayer("Knife");
+        //gameObject.layer = LayerMask.NameToLayer("Knife");
         GameManager.GameData.CurrentScore++;
+        collider.gameObject.GetComponent<Log>().GetHit(gameObject);
     }
 
     /// <summary>

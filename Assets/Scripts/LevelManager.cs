@@ -18,8 +18,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform logSpawnPoint;
     [SerializeField] private Transform knifeSpawnPoint;
     
-    private const float KnifeSpawnOffsetY = 1.222223f-0.1222228f;
-    private const float AppleSpawnOffsetY = 1.4f;
+    private const float KnifeSpawnOffsetY = 1.5f;
+    private const float AppleSpawnOffsetY = 1.9f;
     
     private GameObject _log;
     private GameObject _currentKnife;
@@ -37,7 +37,6 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateLevel()
     {
-        _objects.Clear();
         GenerateLog();
         _knivesCount = _maxKnivesCount;
         GameManager.RootController.gameController.FillKnives(_maxKnivesCount);
@@ -47,33 +46,34 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCompleted()
     {
-        /*GameManager.GameData.CurrentStage++;
+        GameManager.GameData.CurrentStage++;
         GameManager.GameData.Save();
         GenerateLevel();
-        Debug.Log("Level completed");*/
+        GameManager.Player.enabled = true;
     }
 
     public void Restart()
     {
+        _objects.Clear();
         GameManager.GameData.CurrentStage = 1;
         GameManager.GameData.CurrentScore = 0;
         GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.Game);
-        Debug.Log("Restart level");
     }
 
     public void Lose()
     {
-        Debug.Log("LOSE");
-        //GameManager.Player.enabled = false;
-        //GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
+        GameManager.Player.enabled = false;
+        GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
     }
     
     public void SpawnKnife()
     {
         if (_knivesCount != 0 && _currentKnife.GetComponent<Knife>().Throw())
         {
-            //_knivesCount = Mathf.Max(0, _knivesCount - 1);
-            //GameManager.RootController.gameController.MinusKnife(_knivesCount);
+            _knivesCount = Mathf.Max(0, _knivesCount - 1);
+            GameManager.RootController.gameController.MinusKnife(_knivesCount);
+            if (_knivesCount == 0)
+                return;
             _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
             _currentKnife.GetComponent<Knife>().Init();
         }

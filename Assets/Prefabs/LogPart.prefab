@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6267664334507391870}
   - component: {fileID: 2044769907306088715}
   - component: {fileID: 1679674594179588129}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: LogPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481347676546636791}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

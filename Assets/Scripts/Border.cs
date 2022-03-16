@@ -9,4 +9,11 @@ public class Border : MonoBehaviour
     {
         Destroy(other.gameObject);
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.enabled)
+            Destroy(other.gameObject);
+        Debug.Log(other.name);
+    }
 }
