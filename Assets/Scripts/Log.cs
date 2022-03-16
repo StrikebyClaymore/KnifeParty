@@ -42,9 +42,7 @@ public class Log : MonoBehaviour
                 var part = parts[i];
                 part.transform.SetParent(transform.parent);
                 part.SetActive(true);
-                //var angle = Random.Range(10, 30);
-                //var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-                direction = (transform.position - part.transform.position).normalized;//rotation * Vector3.up;
+                direction = (transform.position - part.transform.position).normalized;
                 
                 var rb3d = part.GetComponent<Rigidbody>();
                 rb3d.isKinematic = false;
@@ -53,7 +51,6 @@ public class Log : MonoBehaviour
                 rb3d.AddTorque(new Vector3(1, 0, 0), ForceMode.Impulse);
 
                 part.GetComponent<LogPart>().Init();
-                //part1.GetComponent<Rigidbody>().AddTorque(1, ForceMode2D.Force);
             }
 
             for(int i = 0; i < transform.childCount; i++)

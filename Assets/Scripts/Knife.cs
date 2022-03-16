@@ -34,7 +34,6 @@ public class Knife : MonoBehaviour
     {
         _isAttachedToLog = true;
         rb.bodyType = RigidbodyType2D.Kinematic;
-        //gameObject.layer = LayerMask.NameToLayer("Knife");
     }
     
     private void Update()
@@ -109,7 +108,6 @@ public class Knife : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         transform.SetParent(collider.transform);
         transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
-        //gameObject.layer = LayerMask.NameToLayer("Knife");
         GameManager.GameData.CurrentScore++;
         collider.gameObject.GetComponent<Log>().GetHit(gameObject);
         
@@ -117,8 +115,7 @@ public class Knife : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверка столкновения с ножом, который вокнут в бревно
-    /// /// Проверка столкновения с бревном
+    /// Проверка столкновений
     /// </summary>
     /// <param name="collider"></param>
     private void OnTriggerEnter2D(Collider2D collider)
@@ -141,10 +138,5 @@ public class Knife : MonoBehaviour
             if (!_isAttachedToLog)
                 collider.GetComponent<Apple>().GetHit();
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        
     }
 }
