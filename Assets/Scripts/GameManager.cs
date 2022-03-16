@@ -20,5 +20,10 @@ public class GameManager : MonoBehaviour
         LevelManager = GetComponentInChildren<LevelManager>();
         Vibration.Init();
     }
-    
+
+    public static void Vibrate()
+    {
+        if(VibrationsOn)
+            Vibration.Vibrate();
+    }
 }

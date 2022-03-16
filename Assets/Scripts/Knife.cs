@@ -109,7 +109,7 @@ public class Knife : MonoBehaviour
         GameManager.GameData.CurrentScore++;
         collider.gameObject.GetComponent<Log>().GetHit(gameObject);
         
-        //Vibration.Vibrate();
+        //GameManager.Vibrate();
     }
 
     /// <summary>

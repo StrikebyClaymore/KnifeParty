@@ -80,7 +80,7 @@ public class LevelManager : MonoBehaviour
 
     public void Lose()
     {
-        Vibration.Vibrate();
+        GameManager.Vibrate();
         GameManager.Player.enabled = false;
         GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
     }

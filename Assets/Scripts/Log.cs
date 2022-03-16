@@ -75,7 +75,7 @@ public class Log : MonoBehaviour
 
             GameManager.Player.enabled = false;
             
-            //Vibration.Vibrate();
+            //GameManager.Vibrate();
             
             GameManager.LevelManager.Invoke(nameof(GameManager.LevelManager.LevelCompleted), 1.0f);
             Destroy(gameObject);

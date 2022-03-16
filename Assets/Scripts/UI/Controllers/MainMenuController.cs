@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuController : SubController<MainMenuView>
+public class MainMenuController : ScoreController<MainMenuView>
 {
     public override void Activate()
     {

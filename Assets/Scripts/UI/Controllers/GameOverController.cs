@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverController : SubController<GameOverView>
+public class GameOverController : ScoreController<GameOverView>
 {
     public override void Activate()
     {

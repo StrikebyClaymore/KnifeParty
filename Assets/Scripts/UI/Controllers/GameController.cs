@@ -4,7 +4,7 @@ using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : SubController<GameView>
+public class GameController : ScoreController<GameView>
 {
     [SerializeField] private Transform knives;
     [SerializeField] private GameObject knifeIconPrefab;
