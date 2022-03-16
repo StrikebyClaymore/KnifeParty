@@ -1689,6 +1689,9 @@ MonoBehaviour:
   logSpawnPoint: {fileID: 860922859}
   knifeSpawnPoint: {fileID: 18840395}
   maxGenerateKnivesCount: 3
+  spawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 1536
 --- !u!1 &914101167
 GameObject:
   m_ObjectHideFlags: 0

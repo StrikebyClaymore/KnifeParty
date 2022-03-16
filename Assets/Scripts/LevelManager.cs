@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
     private int _maxKnivesCount = 7;
     private int _knivesCount = 7;
 
+    [SerializeField] private LayerMask spawnLayerMask;
+    
     public void Init()
     {
         GenerateLevel();
@@ -91,8 +93,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Random.Range(0, 100) > spawnConfig.apple_chance)
             return;
-        var angle = Random.Range(0, 360);
-        var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        var rotation = GenerateSpawnRotation();
         var direction = rotation * Vector3.up;
         var spawnPosition = _log.transform.position + direction * AppleSpawnOffsetY;
         var apple = Instantiate(applePrefab, spawnPosition, rotation, _log.transform);
@@ -104,13 +105,49 @@ public class LevelManager : MonoBehaviour
         {
             if (Random.Range(0, 100) > spawnConfig.knife_chance)
                 return;
-            var angle = Random.Range(0, 360);
-            var rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            var rotation = GenerateSpawnRotation();
             var direction = (rotation * Vector3.up).normalized;
             var spawnPosition = _log.transform.position - direction * KnifeSpawnOffsetY;
             var knife = Instantiate(knifePrefab, spawnPosition, rotation);
             knife.transform.SetParent(_log.transform);
             knife.GetComponent<Knife>().SpawnInLog();
         }
+    }
+
+    private Quaternion GenerateSpawnRotation()
+    {
+        Quaternion ang;
+        Vector3 dir;
+        float dist = 2.0f;
+        Vector3 pos = _log.transform.position;
+        List<Quaternion> angles = new List<Quaternion>();
+        
+        for (int i = 0; i < 18; i++)
+        {
+            ang = Quaternion.Euler(0, 0, (float)i * 20f);
+            dir = ang * Vector3.up;
+
+            var hit = Physics2D.Raycast(pos, dir, dist, spawnLayerMask);
+
+            if(hit.collider != null)
+            {
+                //Debug.DrawLine(pos, pos + dir * hit.distance, Color.red, 5f);
+            }
+            else
+            {
+                //Debug.DrawLine(pos, pos + dir * dist, Color.green, 5f);
+                angles.Add(ang);
+            }
+        }
+
+        
+        if(angles.Count == 0)
+            return Quaternion.Euler(Vector3.zero);
+        
+        int dice = (int)Random.Range(0, angles.Count);
+        //dir = angles[dice] * Vector3.up;
+        //Debug.DrawLine(pos, pos + dir * dist, Color.blue, 5f);
+
+        return angles[dice];
     }
 }
