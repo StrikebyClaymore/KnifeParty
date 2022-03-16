@@ -12,7 +12,7 @@ public abstract class SubController : MonoBehaviour
     
     [HideInInspector]
     public RootController root;
-    
+
     public virtual void Activate()
     {
         gameObject.SetActive(true);

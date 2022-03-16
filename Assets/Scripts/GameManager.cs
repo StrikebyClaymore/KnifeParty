@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static LevelManager LevelManager;
     public static GameData GameData;
 
+    public static bool VibrationsOn = false;
+
     private void Awake()
     {
         RootController = GetComponentInChildren<RootController>();

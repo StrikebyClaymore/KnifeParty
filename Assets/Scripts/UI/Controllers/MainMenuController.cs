@@ -8,6 +8,7 @@ public class MainMenuController : SubController<MainMenuView>
     public override void Activate()
     {
         ui.OnPlayClicked += StartGame;
+        ui.OnSettingsClicked += OpenSettings;
         base.Activate();
         SetGUIText(GameManager.GameData.MAXStage, GameManager.GameData.MAXScore, GameManager.GameData.Apples);
     }
@@ -16,10 +17,16 @@ public class MainMenuController : SubController<MainMenuView>
     {
         base.Deactivate();
         ui.OnPlayClicked -= StartGame;
+        ui.OnSettingsClicked -= OpenSettings;
     }
     
     private void StartGame()
     {
         root.ChangeController(RootController.ControllerTypeEnum.Game);
+    }
+
+    private void OpenSettings()
+    {
+        root.ChangeController(RootController.ControllerTypeEnum.Settings);
     }
 }
