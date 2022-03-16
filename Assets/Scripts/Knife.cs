@@ -94,8 +94,12 @@ public class Knife : MonoBehaviour
 
     private void CheckLose()
     {
-        if(!_isAttachedToLog)
-            GameManager.LevelManager.Lose();
+        if (!_isAttachedToLog)
+        {
+            GameManager.Vibrate();
+            GameManager.Player.enabled = false;
+            GameManager.LevelManager.Invoke(nameof(GameManager.LevelManager.Lose), 0.5f);
+        }
     }
     
     private void AttachToLog(Collider2D collider)

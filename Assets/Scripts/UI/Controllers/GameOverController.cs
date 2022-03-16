@@ -7,6 +7,8 @@ public class GameOverController : ScoreController<GameOverView>
     public override void Activate()
     {
         ui.OnRestartClicked += RestartGame;
+        ui.OnBackClicked += ReturnBack;
+        ui.OnSettingsClicked += OpenSettings;
         base.Activate();
         SetGUIText(GameManager.GameData.CurrentStage, GameManager.GameData.CurrentScore, GameManager.GameData.Apples);
     }
@@ -15,10 +17,22 @@ public class GameOverController : ScoreController<GameOverView>
     {
         base.Deactivate();
         ui.OnRestartClicked -= RestartGame;
+        ui.OnBackClicked -= ReturnBack;
+        ui.OnSettingsClicked -= OpenSettings;
     }
     
     private void RestartGame()
     {
         GameManager.LevelManager.Restart();
+    }
+    
+    private void ReturnBack()
+    {
+        root.ChangeController(RootController.ControllerTypeEnum.MainMenu);
+    }
+    
+    private void OpenSettings()
+    {
+        root.ChangeController(RootController.ControllerTypeEnum.Settings);
     }
 }
