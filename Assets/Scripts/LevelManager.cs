@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform _objects;
+    [SerializeField] public ParticleSystem hitEffect;
     
     [SerializeField] private SpawnChance spawnConfig;
 
@@ -31,7 +32,7 @@ public class LevelManager : MonoBehaviour
     private int _complexity = 7;
 
     [SerializeField] private LayerMask spawnLayerMask;
-    
+
     public void Init()
     {
         GenerateLevel();

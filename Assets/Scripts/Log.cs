@@ -77,5 +77,12 @@ public class Log : MonoBehaviour
             GameManager.LevelManager.Invoke(nameof(GameManager.LevelManager.LevelCompleted), 1.0f);
             Destroy(gameObject);
         }
+
+        HitEffect();
+    }
+
+    private void HitEffect()
+    {
+        GameManager.LevelManager.hitEffect.Play();
     }
 }
