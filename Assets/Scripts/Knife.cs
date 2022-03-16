@@ -86,7 +86,7 @@ public class Knife : MonoBehaviour
         var direction = (new Vector3(collPos.x, collPos.y, 0) - transform.position).normalized;
         rb.AddForce(-direction * fallForce, ForceMode2D.Impulse);
         rb.AddTorque(torqueForce, ForceMode2D.Force);
-
+        
         // Сначала обрабатывается столкновение с ножом даже если его коллизия находится дальше дерева
         // Поэтому откладываем вызов метода пока не обработается столкновение с деревом
         Invoke(nameof(CheckLose), 0.1f);
@@ -108,6 +108,8 @@ public class Knife : MonoBehaviour
         //gameObject.layer = LayerMask.NameToLayer("Knife");
         GameManager.GameData.CurrentScore++;
         collider.gameObject.GetComponent<Log>().GetHit(gameObject);
+        
+        //Vibration.Vibrate();
     }
 
     /// <summary>

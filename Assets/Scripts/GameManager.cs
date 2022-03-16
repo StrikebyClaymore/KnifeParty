@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         GameData = new GameData();
         Player = GetComponentInChildren<PlayerController>();
         LevelManager = GetComponentInChildren<LevelManager>();
+        Vibration.Init();
     }
     
 }
