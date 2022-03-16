@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform knifeSpawnPoint;
     
     private const float KnifeSpawnOffsetY = 1.5f;
-    private const float AppleSpawnOffsetY = 1.9f;
+    private const float AppleSpawnOffsetY = 1.8f;
     
     private GameObject _log;
     private GameObject _currentKnife;

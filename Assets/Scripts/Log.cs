@@ -55,7 +55,8 @@ public class Log : MonoBehaviour
                 var rb3d = part.GetComponent<Rigidbody>();
                 rb3d.isKinematic = false;
                 rb3d.useGravity = true;
-                rb3d.AddForce(-direction * 5f, ForceMode.Impulse);
+                rb3d.AddForce(-direction * 8f, ForceMode.Impulse);
+                rb3d.AddTorque(new Vector3(1, 0, 0), ForceMode.Impulse);
 
                 part.GetComponent<LogPart>().Init();
                 //part1.GetComponent<Rigidbody>().AddTorque(1, ForceMode2D.Force);
