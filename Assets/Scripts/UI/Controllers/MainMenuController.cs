@@ -29,4 +29,9 @@ public class MainMenuController : ScoreController<MainMenuView>
     {
         root.ChangeController(RootController.ControllerTypeEnum.Settings);
     }
+    
+    public override void SetScore(int count)
+    { 
+        score.text = $"Score {count}";
+    }
 }
