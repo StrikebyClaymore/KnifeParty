@@ -118,10 +118,9 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateKnives()
     {
-        for (int i = 0; i < maxGenerateKnivesCount; i++)
+        var dice = Random.Range(1, maxGenerateKnivesCount + 1);
+        for (int i = 0; i < dice; i++)
         {
-            if (Random.Range(0, 100) > spawnConfig.knife_chance)
-                return;
             var rotation = GenerateSpawnRotation();
             var direction = rotation * Vector3.up;
             var spawnPosition = _log.transform.position + direction * KnifeSpawnOffsetY;

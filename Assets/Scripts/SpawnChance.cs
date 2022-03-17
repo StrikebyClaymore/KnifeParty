@@ -6,5 +6,4 @@ using UnityEngine;
 public class SpawnChance : ScriptableObject
 {
     public int apple_chance;
-    public int knife_chance;
 }

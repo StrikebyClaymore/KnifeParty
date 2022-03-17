@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce69749b7f9f6c468aa9196e0023032, type: 3}
   m_Name: SpawnChanceConfig
   m_EditorClassIdentifier: 
-  apple_chance: 100
-  knife_chance: 100
+  apple_chance: 25
+  knife_chance: 33
