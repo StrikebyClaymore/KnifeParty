@@ -49,20 +49,10 @@ public class LevelManager : MonoBehaviour
     private void GenerateLevel()
     {
         GenerateLog();
-
-        if (GameManager.GameData.CurrentStage > 1)
-        {
-            _knivesCount = Mathf.Max(MINKnivesCount, _knivesCount + _complexity + Random.Range(-2, 2));   
-        }
-        else
-        {
-            _knivesCount += _complexity;
-        }
-
-        _knivesCount = Mathf.Min(_knivesCount, MAXKnivesCount);
+        GenerateKnivesCount();
         
         GameManager.RootController.gameController.FillKnives(_knivesCount);
-        _target.GetComponent<Target>().SetHp(_knivesCount);
+        
         _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
         _currentKnife.GetComponent<Knife>().Init();
     }
@@ -106,27 +96,48 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void GenerateKnivesCount()
+    {
+        if (_roundsToBoss == -1)
+        {
+            _knivesCount = _target.GetComponent<Target>().SetHp(_knivesCount);
+            return;
+        }
+        
+        if (GameManager.GameData.CurrentStage > 1)
+        {
+            _knivesCount = Mathf.Max(MINKnivesCount, _knivesCount + _complexity + Random.Range(-2, 2));   
+        }
+        else
+        {
+            _knivesCount += _complexity;
+        }
+        
+        _knivesCount = Mathf.Min(_knivesCount, MAXKnivesCount);
+        _target.GetComponent<Target>().SetHp(_knivesCount);
+    }
+    
     private void GenerateLog()
     {
         if (_roundsToBoss == MAXRoundsToBoss)
         {
-            _target = Instantiate(bosses.list[_bossIdx], targetSpawnPoint.position, targetSpawnPoint.rotation, _objects);
-            _bossIdx++;
-            if (_bossIdx == bosses.list.Length)
-                _bossIdx = 0;
-            _roundsToBoss = -1;
+            GenerateBoss();
             return;
         }
         
         _target = Instantiate(targetPrefab, targetSpawnPoint.position, targetSpawnPoint.rotation, _objects);
         GenerateApple();
         if (GameManager.GameData.CurrentStage > 1)
-            GenerateKnives();
+            GenerateKnivesInLog();
     }
 
     private void GenerateBoss()
     {
-        
+        _target = Instantiate(bosses.list[_bossIdx], targetSpawnPoint.position, targetSpawnPoint.rotation, _objects);
+        _bossIdx++;
+        if (_bossIdx == bosses.list.Length)
+            _bossIdx = 0;
+        _roundsToBoss = -1; 
     }
     
     private void GenerateApple()
@@ -139,7 +150,7 @@ public class LevelManager : MonoBehaviour
         var apple = Instantiate(applePrefab, spawnPosition, rotation, _target.transform);
     }
 
-    private void GenerateKnives()
+    private void GenerateKnivesInLog()
     {
         var dice = Random.Range(1, maxGenerateKnivesCount + 1);
         for (int i = 0; i < dice; i++)

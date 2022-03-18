@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Target : MonoBehaviour
 {
     private BlinkEffect _blinkEffect;
+    
     protected int Hp;
 
     private void Awake()
@@ -14,9 +15,10 @@ public class Target : MonoBehaviour
         _blinkEffect = GetComponentInChildren<BlinkEffect>(true);
     }
 
-    public virtual void SetHp(int hp)
+    public virtual int SetHp(int hp)
     {
         Hp = hp;
+        return Hp;
     }
     
     public virtual void GetHit(GameObject knife)
