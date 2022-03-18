@@ -109,7 +109,7 @@ public class Knife : MonoBehaviour
         transform.SetParent(collider.transform);
         transform.Translate(new Vector3(0, knifeInLogDisplacement, 0), Space.World);
         GameManager.GameData.CurrentScore++;
-        collider.gameObject.GetComponent<Log>().GetHit(gameObject);
+        collider.gameObject.GetComponent<Target>().GetHit(gameObject);
         
         //GameManager.Vibrate();
     }

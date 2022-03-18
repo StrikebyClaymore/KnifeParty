@@ -2178,7 +2178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860922859}
   m_Layer: 0
-  m_Name: LogSpawnPoint
+  m_Name: TargetSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2389,10 +2389,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objects: {fileID: 1208193535}
   hitEffect: {fileID: 1835285868}
+  bosses: {fileID: 11400000, guid: 51cb99b842ec7214695bcba739ca20ac, type: 2}
   spawnConfig: {fileID: 11400000, guid: 9abe6d28e800bf240849ccab8e77fc17, type: 2}
   knifePrefab: {fileID: 6346148831740219185, guid: dfe361c431a8c864589935582dee04f3,
     type: 3}
-  logPrefab: {fileID: 1030829423424412887, guid: f4a3af5e9952e25428660e7bc3a7d077,
+  targetPrefab: {fileID: 1030829423424412887, guid: a8667c9636ad8dc49b979191b7123231,
     type: 3}
   applePrefab: {fileID: 9083596822194474359, guid: 1a4492a9b1b23fe43baefb0e189b2ad7,
     type: 3}

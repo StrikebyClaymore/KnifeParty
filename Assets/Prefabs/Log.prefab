@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1030829423424412715}
   - component: {fileID: 1577961094624038928}
   m_Layer: 8
-  m_Name: Log 1
+  m_Name: Log
   m_TagString: Log
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

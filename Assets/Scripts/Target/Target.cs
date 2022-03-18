@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    private int _hp;
+    protected int Hp;
     
-    public void SetHp(int hp)
+    public virtual void SetHp(int hp)
     {
-        this._hp = hp;
+        Hp = hp;
     }
     
-    public void GetHit(GameObject knife)
+    public virtual void GetHit(GameObject knife)
     {
-        _hp = Mathf.Max(0, _hp - 1);
+        Hp = Mathf.Max(0, Hp - 1);
         
         HitEffect();
         
-        if (_hp == 0)
+        if (Hp == 0)
         {
             StartCoroutine(DestroySelf(knife));
         }
