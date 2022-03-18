@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
         _knivesCount = Mathf.Min(_knivesCount, _maxKnivesCount);
         
         GameManager.RootController.gameController.FillKnives(_knivesCount);
-        _log.GetComponent<Log>().SetHp(_knivesCount);
+        _log.GetComponent<Target>().SetHp(_knivesCount);
         _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
         _currentKnife.GetComponent<Knife>().Init();
     }
