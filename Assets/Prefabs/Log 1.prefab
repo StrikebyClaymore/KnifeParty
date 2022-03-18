@@ -139,8 +139,9 @@ GameObject:
   - component: {fileID: 350348673689985707}
   - component: {fileID: 1030829423424412714}
   - component: {fileID: 1030829423424412715}
+  - component: {fileID: 1577961094624038928}
   m_Layer: 8
-  m_Name: Log
+  m_Name: Log 1
   m_TagString: Log
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,7 +267,19 @@ MonoBehaviour:
   - {fileID: 3205357734138143842}
   - {fileID: 6933931567315914994}
   - {fileID: 725269448425184897}
-  rotateSpeed: 2
+--- !u!114 &1577961094624038928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030829423424412887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15d073e466764b4cbba2de22f1ea098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 1.5
 --- !u!1 &3205357734138143842
 GameObject:
   m_ObjectHideFlags: 0
