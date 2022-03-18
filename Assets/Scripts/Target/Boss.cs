@@ -6,6 +6,6 @@ public class Boss : Target
 {
     protected override void DestroyEffect()
     {
-        
+        GameManager.LevelManager.bossExplosionEffect.Play();
     }
 }

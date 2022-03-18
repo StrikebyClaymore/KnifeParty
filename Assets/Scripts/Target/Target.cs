@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Target : MonoBehaviour
 {
+    private BlinkEffect _blinkEffect;
     protected int Hp;
-    
+
+    private void Awake()
+    {
+        _blinkEffect = GetComponentInChildren<BlinkEffect>(true);
+    }
+
     public virtual void SetHp(int hp)
     {
         Hp = hp;
@@ -46,6 +54,8 @@ public class Target : MonoBehaviour
             
             if(child.gameObject == knife)
                 continue;
+            if(child.CompareTag("Effect"))
+                continue;
             
             child.gameObject.layer = LayerMask.NameToLayer("FallObject");
             child.SetParent(transform.parent);
@@ -69,6 +79,7 @@ public class Target : MonoBehaviour
      
     private void HitEffect()
     {
+        _blinkEffect.Play();
         GameManager.LevelManager.hitEffect.Play();
     }
 }

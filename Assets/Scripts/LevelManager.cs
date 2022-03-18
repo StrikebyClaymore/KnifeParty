@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform _objects;
     [SerializeField] public ParticleSystem hitEffect;
+    [SerializeField] public ParticleSystem bossExplosionEffect;
 
     [SerializeField] private BossList bosses;
     [SerializeField] private SpawnChance spawnConfig;
@@ -33,7 +34,7 @@ public class LevelManager : MonoBehaviour
     private int _knivesCount = 0;
     private int _complexity = 7;
 
-    private const int MAXRoundsToBoss = 4;
+    private const int MAXRoundsToBoss = 1;
     private int _roundsToBoss = 0;
     private int _bossIdx = 0;
 
@@ -113,7 +114,7 @@ public class LevelManager : MonoBehaviour
             _bossIdx++;
             if (_bossIdx == bosses.list.Length)
                 _bossIdx = 0;
-            _roundsToBoss = 0;
+            _roundsToBoss = -1;
             return;
         }
         
