@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29eec159dcc15094eaf4f7e103eebd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 2
+  maxHp: 20
   knifeConfig: {fileID: 11400000, guid: 4b1bf905a0285194ba849ccd49e3038f, type: 2}
   spriteRenderer: {fileID: 1030829423424412885}
   phaseTwoSprite: {fileID: 21300000, guid: f1f51be5ae1c7e241bf4e957ce20330e, type: 3}
@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15d073e466764b4cbba2de22f1ea098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRotateSpeed: 3
+  minRotateSpeed: 1
   rotateSpeed: 1.5
 --- !u!114 &7602563028301769796
 MonoBehaviour:
