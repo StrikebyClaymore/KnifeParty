@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 1030829423424412714}
   - component: {fileID: 1030829423424412715}
   - component: {fileID: 1577961094624038928}
+  - component: {fileID: 7784885890969014288}
   m_Layer: 8
   m_Name: Log
   m_TagString: Log
@@ -281,6 +282,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1.5
+--- !u!114 &7784885890969014288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030829423424412887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e393960016114b247a620c718d911d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeOffset: 0.1
+  shakeTime: 0.05
 --- !u!1 &3205357734138143842
 GameObject:
   m_ObjectHideFlags: 0

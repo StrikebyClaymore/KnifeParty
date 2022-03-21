@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 public class Target : MonoBehaviour
 {
     private BlinkEffect _blinkEffect;
+    private TargetShake _targetShake;
     
     protected int Hp;
 
     private void Awake()
     {
         _blinkEffect = GetComponentInChildren<BlinkEffect>(true);
+        _targetShake = GetComponent<TargetShake>();
     }
 
     public virtual int SetHp(int hp)
@@ -25,7 +27,7 @@ public class Target : MonoBehaviour
     {
         Hp = Mathf.Max(0, Hp - 1);
         
-        HitEffect();
+        HitEffects();
         
         if (Hp == 0)
         {
@@ -79,9 +81,10 @@ public class Target : MonoBehaviour
 
      protected virtual void DestroyEffect() { }
      
-    private void HitEffect()
+    private void HitEffects()
     {
         _blinkEffect.Play();
+        _targetShake.Shake();
         GameManager.LevelManager.hitEffect.Play();
     }
 }
