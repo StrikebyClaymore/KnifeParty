@@ -33,7 +33,7 @@ public class Target : MonoBehaviour
         }
     }
     
-     private IEnumerator DestroySelf(GameObject knife)
+     protected virtual IEnumerator DestroySelf(GameObject knife)
      {
         yield return new WaitForSeconds(0.05f);
         

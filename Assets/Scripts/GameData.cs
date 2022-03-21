@@ -41,7 +41,19 @@ public class GameData
             Save();
         } 
     }
-    
+
+    private int _currentKnife;
+    public int CurrentKnife
+    {
+        get => _currentKnife;
+        set
+        {
+            _currentKnife = value;
+            GameManager.KnifeId = _currentKnife;
+            Save();
+        }
+    }
+
     public GameData()
     {
         Load();
@@ -58,6 +70,8 @@ public class GameData
         PlayerPrefs.SetInt("MAXStage", MAXStage);
         PlayerPrefs.SetInt("MAXScore", MAXScore);
         PlayerPrefs.SetInt("Apples", Apples);
+        
+        PlayerPrefs.SetInt("CurrentKnife", CurrentKnife);
     }
 
     private void Load()
@@ -65,5 +79,7 @@ public class GameData
         MAXStage = PlayerPrefs.GetInt("MAXStage");
         MAXScore = PlayerPrefs.GetInt("MAXScore");
         Apples = PlayerPrefs.GetInt("Apples");
+        
+        CurrentKnife = PlayerPrefs.GetInt("CurrentKnife");
     }
 }

@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     
     private GameObject _target;
     private GameObject _currentKnife;
+    [SerializeField] private KnivesConfig knivesConfig;
 
     [SerializeField] private int maxGenerateKnivesCount = 3;
 
@@ -44,17 +45,6 @@ public class LevelManager : MonoBehaviour
     {
         GenerateLevel();
         GameManager.Player.enabled = true;
-    }
-
-    private void GenerateLevel()
-    {
-        GenerateLog();
-        GenerateKnivesCount();
-        
-        GameManager.RootController.gameController.FillKnives(_knivesCount);
-        
-        _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
-        _currentKnife.GetComponent<Knife>().Init();
     }
 
     public void LevelCompleted()
@@ -92,31 +82,21 @@ public class LevelManager : MonoBehaviour
             if (_knivesCount == 0)
                 return;
             _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
-            _currentKnife.GetComponent<Knife>().Init();
+            _currentKnife.GetComponent<Knife>().Init(knivesConfig.knives[GameManager.KnifeId].sprite);
         }
     }
 
-    private void GenerateKnivesCount()
+    private void GenerateLevel()
     {
-        if (_roundsToBoss == -1)
-        {
-            _knivesCount = _target.GetComponent<Target>().SetHp(_knivesCount);
-            return;
-        }
+        GenerateLog();
+        GenerateKnivesCount();
         
-        if (GameManager.GameData.CurrentStage > 1)
-        {
-            _knivesCount = Mathf.Max(MINKnivesCount, _knivesCount + _complexity + Random.Range(-2, 2));   
-        }
-        else
-        {
-            _knivesCount += _complexity;
-        }
+        GameManager.RootController.gameController.FillKnives(_knivesCount);
         
-        _knivesCount = Mathf.Min(_knivesCount, MAXKnivesCount);
-        _target.GetComponent<Target>().SetHp(_knivesCount);
+        _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
+        _currentKnife.GetComponent<Knife>().Init(knivesConfig.knives[GameManager.KnifeId].sprite);
     }
-    
+
     private void GenerateLog()
     {
         if (_roundsToBoss == MAXRoundsToBoss)
@@ -166,6 +146,27 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void GenerateKnivesCount()
+    {
+        if (_roundsToBoss == -1)
+        {
+            _knivesCount = _target.GetComponent<Target>().SetHp(_knivesCount);
+            return;
+        }
+        
+        if (GameManager.GameData.CurrentStage > 1)
+        {
+            _knivesCount = Mathf.Max(MINKnivesCount, _knivesCount + _complexity + Random.Range(-2, 2));   
+        }
+        else
+        {
+            _knivesCount += _complexity;
+        }
+        
+        _knivesCount = Mathf.Min(_knivesCount, MAXKnivesCount);
+        _target.GetComponent<Target>().SetHp(_knivesCount);
+    }
+    
     private Quaternion GenerateSpawnRotation()
     {
         Quaternion ang;
@@ -197,6 +198,7 @@ public class LevelManager : MonoBehaviour
             return Quaternion.Euler(Vector3.zero);
         
         int dice = (int)Random.Range(0, angles.Count);
+        
         //dir = angles[dice] * Vector3.up;
         //Debug.DrawLine(pos, pos + dir * (dist * 2f), Color.blue, 5f);
 

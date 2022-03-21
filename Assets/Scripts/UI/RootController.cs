@@ -7,7 +7,8 @@ public class RootController : MonoBehaviour
         MainMenu,
         Game,
         GameOver,
-        Settings
+        Settings,
+        ChooseKnife
     }
 
     [Header("Controllers")]
@@ -19,6 +20,8 @@ public class RootController : MonoBehaviour
     public GameOverController gameOverController;
     [SerializeField]
     public SettingsController settingsController;
+    [SerializeField]
+    public ChooseKnifeController chooseKnifeController;
 
     private ControllerTypeEnum _current;
     private ControllerTypeEnum _previous;
@@ -29,6 +32,7 @@ public class RootController : MonoBehaviour
         gameController.root = this;
         gameOverController.root = this;
         settingsController.root = this;
+        chooseKnifeController.root = this;
 
         _current = ControllerTypeEnum.MainMenu;
         ChangeController(_current);
@@ -52,6 +56,9 @@ public class RootController : MonoBehaviour
             case ControllerTypeEnum.Settings:
                 settingsController.Activate();
                 break;
+            case ControllerTypeEnum.ChooseKnife:
+                chooseKnifeController.Activate();
+                break;
             default:
                 break;
         }
@@ -64,12 +71,13 @@ public class RootController : MonoBehaviour
     {
         ChangeController(_previous);
     }
-    
-    public void DeactivateControllers()
+
+    private void DeactivateControllers()
     {
         menuController.Deactivate();
         gameController.Deactivate();
         gameOverController.Deactivate();
         settingsController.Deactivate();
+        chooseKnifeController.Deactivate();
     }
 }

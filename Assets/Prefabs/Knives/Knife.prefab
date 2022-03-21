@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3493011123322097052}
   knifeCollider: {fileID: 4959196514620120890}
+  spriteRenderer: {fileID: 6346148831740219190}
   throwForce: 30
   fallForce: 15
   torqueForce: 720
@@ -106,6 +107,7 @@ MonoBehaviour:
   tweenOffsetY: 2.5
   tweenScale: 0.5
   tweenStopDistance: 0.01
+  sp: {fileID: 21300000, guid: f749bbcf0e9aba34a8ce061d123b2ba0, type: 3}
 --- !u!50 &3493011123322097052
 Rigidbody2D:
   serializedVersion: 4
@@ -144,7 +146,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.92, y: 1.92}
+    oldSize: {x: 0.64, y: 1.6}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -170,7 +172,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.92, y: 1.92}
+    oldSize: {x: 0.64, y: 1.6}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

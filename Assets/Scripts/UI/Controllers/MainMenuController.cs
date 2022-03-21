@@ -9,6 +9,7 @@ public class MainMenuController : ScoreController<MainMenuView>
     {
         ui.OnPlayClicked += StartGame;
         ui.OnSettingsClicked += OpenSettings;
+        ui.OnChooseKnifeClicked += OpenChooseKnife;
         base.Activate();
         SetGUIText(GameManager.GameData.MAXStage, GameManager.GameData.MAXScore, GameManager.GameData.Apples);
     }
@@ -18,6 +19,7 @@ public class MainMenuController : ScoreController<MainMenuView>
         base.Deactivate();
         ui.OnPlayClicked -= StartGame;
         ui.OnSettingsClicked -= OpenSettings;
+        ui.OnChooseKnifeClicked -= OpenChooseKnife;
     }
     
     private void StartGame()
@@ -33,5 +35,10 @@ public class MainMenuController : ScoreController<MainMenuView>
     public override void SetScore(int count)
     { 
         score.text = $"Score {count}";
+    }
+    
+    private void OpenChooseKnife()
+    {
+        root.ChangeController(RootController.ControllerTypeEnum.ChooseKnife);
     }
 }

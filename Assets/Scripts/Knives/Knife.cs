@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Knife : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D knifeCollider;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     
     [SerializeField] private float throwForce = 30f;
     [SerializeField] private float fallForce = 20f;
@@ -21,8 +23,11 @@ public class Knife : MonoBehaviour
     private float _tweenPositionY;
     private bool _isOnTween;
 
-    public void Init()
+    public void Init(Sprite sprite = null)
     {
+        if (!(sprite is null))
+            spriteRenderer.sprite = sprite;
+        
         _tweenStart = transform.position;
         _tweenEnd = new Vector3(0, _tweenStart.y + tweenOffsetY, 0);
         rb.bodyType = RigidbodyType2D.Kinematic;

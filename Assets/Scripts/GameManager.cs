@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static PlayerController Player;
     public static LevelManager LevelManager;
     public static GameData GameData;
-
+    
+    public static int KnifeId;
+    
     public static bool VibrationsOn = false;
 
     private void Awake()

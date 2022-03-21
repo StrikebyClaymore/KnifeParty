@@ -9,6 +9,7 @@ public class GameOverController : ScoreController<GameOverView>
         ui.OnRestartClicked += RestartGame;
         ui.OnBackClicked += ReturnBack;
         ui.OnSettingsClicked += OpenSettings;
+        ui.OnChooseKnifeClicked += OpenChooseKnife;
         base.Activate();
         SetGUIText(GameManager.GameData.CurrentStage, GameManager.GameData.CurrentScore, GameManager.GameData.Apples);
     }
@@ -19,6 +20,7 @@ public class GameOverController : ScoreController<GameOverView>
         ui.OnRestartClicked -= RestartGame;
         ui.OnBackClicked -= ReturnBack;
         ui.OnSettingsClicked -= OpenSettings;
+        ui.OnChooseKnifeClicked -= OpenChooseKnife;
     }
     
     private void RestartGame()
@@ -34,5 +36,10 @@ public class GameOverController : ScoreController<GameOverView>
     private void OpenSettings()
     {
         root.ChangeController(RootController.ControllerTypeEnum.Settings);
+    }
+
+    private void OpenChooseKnife()
+    {
+        root.ChangeController(RootController.ControllerTypeEnum.ChooseKnife);
     }
 }
