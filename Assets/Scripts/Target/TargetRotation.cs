@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TargetRotation : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class TargetRotation : MonoBehaviour
 
     private int _speedDirection = 1;
     private int _moveDirection = 1;
+
+    private void Start()
+    {
+        var dice = Random.Range(0, 2);
+        if(dice == 0)
+            _moveDirection *= -1;
+    }
 
     private void Update()
     {
