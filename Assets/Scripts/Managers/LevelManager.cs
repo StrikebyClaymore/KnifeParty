@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour
         _complexity = 7;
         _knivesCount = 0;
         _roundsToBoss = 0;
+        _appleSpawned = false;
         _objects.Clear();
         GameManager.GameData.CurrentStage = 1;
         GameManager.GameData.CurrentScore = 0;
@@ -119,7 +120,8 @@ public class LevelManager : MonoBehaviour
         _bossIdx++;
         if (_bossIdx == bosses.list.Length)
             _bossIdx = 0;
-        _roundsToBoss = -1; 
+        _roundsToBoss = -1;
+        _appleSpawned = false;
     }
     
     private void GenerateApple()
