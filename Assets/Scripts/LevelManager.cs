@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateLog()
     {
-        if (_roundsToBoss == MAXRoundsToBoss)
+        if (_roundsToBoss == MAXRoundsToBoss || _roundsToBoss == -1)
         {
             GenerateBoss();
             return;
