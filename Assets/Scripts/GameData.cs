@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameData
@@ -49,15 +51,16 @@ public class GameData
         set
         {
             _currentKnife = value;
-            GameManager.KnifeId = _currentKnife;
+            GameManager.KnivesManager.knifeId = _currentKnife;
             Save();
         }
     }
 
+    public HashSet<int> UnlockedKnives = new HashSet<int>{ 0 };
+
     public GameData()
     {
         Load();
-        GameManager.RootController.gameController.SetStage(_currentStage);
     }
 
     public void Save()
@@ -70,16 +73,41 @@ public class GameData
         PlayerPrefs.SetInt("MAXStage", MAXStage);
         PlayerPrefs.SetInt("MAXScore", MAXScore);
         PlayerPrefs.SetInt("Apples", Apples);
-        
+
         PlayerPrefs.SetInt("CurrentKnife", CurrentKnife);
+
+        var knivesString = "";
+        foreach (var id in UnlockedKnives)
+            knivesString += id + ",";
+
+        PlayerPrefs.SetString("Knives", knivesString);
     }
 
     private void Load()
     {
+        var knivesString = PlayerPrefs.GetString("Knives");
+        var knives = knivesString.Split(',');
+        
+        foreach (var strId in knives)
+        {
+            if (int.TryParse(strId, out var id))
+            {
+                UnlockedKnives.Add(id);
+                GameManager.KnivesManager.knivesConfig.knives[id].unlocked = true;
+            }
+        }
+        
         MAXStage = PlayerPrefs.GetInt("MAXStage");
         MAXScore = PlayerPrefs.GetInt("MAXScore");
-        Apples = PlayerPrefs.GetInt("Apples");
+        _apples = PlayerPrefs.GetInt("Apples");
         
         CurrentKnife = PlayerPrefs.GetInt("CurrentKnife");
+        GameManager.KnivesManager.knifeId = _currentKnife;
+    }
+    
+    public void SaveUnlockedKnife(int id)
+    {
+        UnlockedKnives.Add(id);
+        Save();
     }
 }

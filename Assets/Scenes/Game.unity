@@ -1933,6 +1933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447811346}
   - component: {fileID: 447811347}
+  - component: {fileID: 447811348}
   m_Layer: 0
   m_Name: SceneRoot
   m_TagString: Untagged
@@ -1968,6 +1969,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8220a0166ed02449055fc6c0d1d4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &447811348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447811345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0860033797f14352bfbe509a8c17c5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knivesConfig: {fileID: 11400000, guid: 4589ae8871516a34ca85021bc4a95d79, type: 2}
+  knifeId: 0
 --- !u!1 &493104834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,7 +3699,6 @@ MonoBehaviour:
     type: 3}
   targetSpawnPoint: {fileID: 860922859}
   knifeSpawnPoint: {fileID: 18840395}
-  knivesConfig: {fileID: 11400000, guid: 4589ae8871516a34ca85021bc4a95d79, type: 2}
   maxGenerateKnivesCount: 3
   spawnLayerMask:
     serializedVersion: 2

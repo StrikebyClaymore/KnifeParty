@@ -26,7 +26,6 @@ public class LevelManager : MonoBehaviour
     
     private GameObject _target;
     private GameObject _currentKnife;
-    [SerializeField] private KnivesConfig knivesConfig;
 
     [SerializeField] private int maxGenerateKnivesCount = 3;
 
@@ -35,12 +34,14 @@ public class LevelManager : MonoBehaviour
     private int _knivesCount = 0;
     private int _complexity = 7;
 
-    private const int MAXRoundsToBoss = 1;
+    private const int MAXRoundsToBoss = 4;
     private int _roundsToBoss = 0;
     private int _bossIdx = 0;
 
     [SerializeField] private LayerMask spawnLayerMask;
 
+    private bool _appleSpawned = false;
+    
     public void Init()
     {
         GenerateLevel();
@@ -61,6 +62,7 @@ public class LevelManager : MonoBehaviour
     {
         _complexity = 7;
         _knivesCount = 0;
+        _roundsToBoss = 0;
         _objects.Clear();
         GameManager.GameData.CurrentStage = 1;
         GameManager.GameData.CurrentScore = 0;
@@ -82,7 +84,7 @@ public class LevelManager : MonoBehaviour
             if (_knivesCount == 0)
                 return;
             _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
-            _currentKnife.GetComponent<Knife>().Init(knivesConfig.knives[GameManager.KnifeId].sprite);
+            _currentKnife.GetComponent<Knife>().Init(GameManager.KnivesManager.GetKnifeConfig().sprite);
         }
     }
 
@@ -94,7 +96,7 @@ public class LevelManager : MonoBehaviour
         GameManager.RootController.gameController.FillKnives(_knivesCount);
         
         _currentKnife = Instantiate(knifePrefab, knifeSpawnPoint.position, knifeSpawnPoint.rotation, _objects);
-        _currentKnife.GetComponent<Knife>().Init(knivesConfig.knives[GameManager.KnifeId].sprite);
+        _currentKnife.GetComponent<Knife>().Init(GameManager.KnivesManager.GetKnifeConfig().sprite);
     }
 
     private void GenerateLog()
@@ -122,12 +124,13 @@ public class LevelManager : MonoBehaviour
     
     private void GenerateApple()
     {
-        if (Random.Range(0, 100) > spawnConfig.apple_chance)
+        if (Random.Range(50, 100) > spawnConfig.apple_chance && !(!_appleSpawned && _roundsToBoss == 3))
             return;
+        _appleSpawned = true;
         var rotation = GenerateSpawnRotation();
         var direction = rotation * Vector3.up;
         var spawnPosition = _target.transform.position + direction * AppleSpawnOffsetY;
-        var apple = Instantiate(applePrefab, spawnPosition, rotation, _target.transform);
+        Instantiate(applePrefab, spawnPosition, rotation, _target.transform);
     }
 
     private void GenerateKnivesInLog()

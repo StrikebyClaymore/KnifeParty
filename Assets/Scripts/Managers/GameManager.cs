@@ -8,16 +8,16 @@ public class GameManager : MonoBehaviour
     public static RootController RootController;
     public static PlayerController Player;
     public static LevelManager LevelManager;
+    public static KnivesManager KnivesManager;
     public static GameData GameData;
-    
-    public static int KnifeId;
-    
+
     public static bool VibrationsOn = false;
 
     private void Awake()
     {
-        RootController = GetComponentInChildren<RootController>();
+        KnivesManager = GetComponent<KnivesManager>();
         GameData = new GameData();
+        RootController = GetComponentInChildren<RootController>();
         Player = GetComponentInChildren<PlayerController>();
         LevelManager = GetComponentInChildren<LevelManager>();
         Vibration.Init();

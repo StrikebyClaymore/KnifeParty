@@ -12,6 +12,8 @@ public class KnivesGroup : MonoBehaviour
     private void Awake()
     {
         ConnectSlotsButtons();
+
+        currentKnife.sprite = GameManager.KnivesManager.GetKnifeConfig().sprite;
     }
 
     private void ConnectSlotsButtons()
@@ -44,10 +46,15 @@ public class KnivesGroup : MonoBehaviour
 
     public void UnlockSlot(KnifeConfig knife)
     {
+        if(knife.unlocked)
+            return;
+        
         knife.unlocked = true;
-        
+
         var idx = knife.id;
-        
+
+        GameManager.GameData.SaveUnlockedKnife(idx);
+
         var row = transform.GetChild(idx / 4);
         var child = row.GetChild(idx % 4);
         var button = child.GetComponent<Button>();
@@ -64,6 +71,6 @@ public class KnivesGroup : MonoBehaviour
         var row = transform.GetChild(idx / 4);
         var slot = row.GetChild(idx % 4).GetComponent<KnifeSlot>();
         currentKnife.sprite = slot.knifeImage.sprite;
-        GameManager.KnifeId = idx;
+        GameManager.GameData.CurrentKnife = idx;
     }
 }
