@@ -12,6 +12,7 @@ public class GameController : ScoreController<GameView>
     public override void Activate()
     {
         base.Activate();
+        SetApples(GameManager.GameData.Apples);
         GameManager.LevelManager.Init();
     }
     
