@@ -126,7 +126,7 @@ public class LevelManager : MonoBehaviour
     
     private void GenerateApple()
     {
-        if (Random.Range(50, 100) > spawnConfig.apple_chance && !(!_appleSpawned && _roundsToBoss == 3))
+        if (Random.Range(0, 100) > spawnConfig.apple_chance && !(!_appleSpawned && _roundsToBoss == 3))
             return;
         _appleSpawned = true;
         var rotation = GenerateSpawnRotation();
