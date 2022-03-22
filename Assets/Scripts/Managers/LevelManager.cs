@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     public void Init()
     {
         GenerateLevel();
+        GameManager.GameData.CurrentStage = 1;
         GameManager.Player.enabled = true;
     }
 
@@ -58,13 +59,8 @@ public class LevelManager : MonoBehaviour
         GameManager.Player.enabled = true;
     }
 
-    public void Restart()
+    public void RestartGame()
     {
-        _complexity = 7;
-        _knivesCount = 0;
-        _roundsToBoss = 0;
-        _appleSpawned = false;
-        _objects.Clear();
         GameManager.GameData.CurrentStage = 1;
         GameManager.GameData.CurrentScore = 0;
         GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.Game);
@@ -72,8 +68,12 @@ public class LevelManager : MonoBehaviour
 
     public void Lose()
     {
-        _objects.Clear();
         GameManager.RootController.ChangeController(RootController.ControllerTypeEnum.GameOver);
+        _complexity = 7;
+        _knivesCount = 0;
+        _roundsToBoss = 0;
+        _appleSpawned = false;
+        _objects.Clear();
     }
     
     public void SpawnKnife()

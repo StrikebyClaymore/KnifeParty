@@ -25,7 +25,7 @@ public class GameOverController : ScoreController<GameOverView>
     
     private void RestartGame()
     {
-        GameManager.LevelManager.Restart();
+        GameManager.LevelManager.RestartGame();
     }
     
     private void ReturnBack()
